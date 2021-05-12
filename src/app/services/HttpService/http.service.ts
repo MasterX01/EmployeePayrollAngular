@@ -1,41 +1,31 @@
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
 
+  options = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
   baseUrl = environment.BaseUrl;
 
   constructor(private http: HttpClient) { }
 
-  Get(url): Observable<any>{
-    let options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization' : localStorage.getItem('token'),
-
-      })
-    };
-    return this.http.get<any>(this.baseUrl + url, options);
+  Get(url){
+    return this.http.get(this.baseUrl + url, this.options);
   }
-  Update(){
-
+  Update(url,data){
+    return this.http.put(this.baseUrl + url, data, this.options);
   }
-  Delete(){
-
+  Delete(url){
+    return this.http.delete(this.baseUrl + url);
   }
   Post(url, data){
-    let options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization' : localStorage.getItem('token'),
-
-      })
-    };
-    this.http.post(this.baseUrl + url, data, options);
+    return this.http.post(this.baseUrl + url, data, this.options);
   }
 }

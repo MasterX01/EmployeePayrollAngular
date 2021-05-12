@@ -10,10 +10,19 @@ export class EmployeeService {
   constructor(private http: HttpService) { }
 
   addEmployee(data){
-    this.http.Post('/add', data);
+    return this.http.Post('add', data);
   }
 
   getAllEmployees(){
-    return this.http.Get('/all');
+    return this.http.Get('all');
   }
+
+  updateEmployee(id, data){
+    return this.http.Update('update/' + id, data);
+  }
+
+  deleteEmployee(id){
+    return this.http.Delete('delete/' + id);
+  }
+
 }

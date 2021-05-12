@@ -1,4 +1,4 @@
-<header class="header-content header">
+<!-- <header class="header-content header">
   <div class="logo-content">
       <img src="../../../assets/assets/images/logo.png" alt="logo image">
       <div>
@@ -6,8 +6,8 @@
           <span class="emp-text emp-payroll">PAYROLL</span>
       </div>
   </div>
-</header>
-
+</header> -->
+<div mat-dialog-content>
 <div class="form-content">
   <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()" onreset="resetForm()">
 
@@ -16,7 +16,7 @@
     <div class="row-content">
       <label class="label text" for="name">Name</label>
       <mat-form-field class="input" appearance="outline">
-        <input matInput placeholder="Name" formControlName="name" required >
+        <input matInput [(ngModel)]="this.name" formControlName="name" placeholder="Name" >
       </mat-form-field>
     </div>
 
@@ -24,22 +24,22 @@
       <label class="label text" for="profile">Profile image</label>
       <div class="profile-radio-content">
         <label>
-          <input type="radio" id="profile1" name="profileImage" formControlName="profileImage" value="../../../assets/assets/profile-images/Ellipse -1.png"
+          <input type="radio" [(ngModel)]="this.profileImage" id="profile1" name="profileImage" formControlName="profileImage" value="../../../assets/assets/profile-images/Ellipse -1.png"
                 required>
           <img class="profile" id="image1" src="../../../assets/assets/profile-images/Ellipse -1.png">
         </label>
         <label>
-          <input type="radio" id="profile2" name="profileImage" formControlName="profileImage" value="../../../assets/assets/profile-images/Ellipse -2.png"
+          <input type="radio" [(ngModel)]="this.profileImage" id="profile2" name="profileImage" formControlName="profileImage" value="../../../assets/assets/profile-images/Ellipse -2.png"
                 required>
           <img class="profile" id="image2" src="../../../assets/assets/profile-images/Ellipse -2.png">
         </label>
         <label>
-          <input type="radio" id="profile3" name="profileImage" formControlName="profileImage" value="../../../assets/assets/profile-images/Ellipse -3.png"
+          <input type="radio" [(ngModel)]="this.profileImage" id="profile3" name="profileImage" formControlName="profileImage" value="../../../assets/assets/profile-images/Ellipse -3.png"
                 required>
           <img class="profile" id="image3" src="../../../assets/assets/profile-images/Ellipse -3.png">
         </label>
         <label>
-          <input type="radio" id="profile4" name="profileImage" formControlName="profileImage" value="../../../assets/assets/profile-images/Ellipse -4.png"
+          <input type="radio" [(ngModel)]="this.profileImage" id="profile4" name="profileImage" formControlName="profileImage" value="../../../assets/assets/profile-images/Ellipse -4.png"
                 required>
           <img class="profile" id="image4" src="../../../assets/assets/profile-images/Ellipse -4.png">
         </label>
@@ -49,9 +49,9 @@
     <div class="row-content">
       <label class="label text" for="gender">Gender</label>
       <div>
-        <input type="radio" formControlName="gender" value="male">
+        <input type="radio" [(ngModel)]="this.gender" formControlName="gender" value="male">
         <label class="text" for="male">Male</label>
-        <input type="radio" formControlName="gender" value="female">
+        <input type="radio" [(ngModel)]="this.gender" formControlName="gender" value="female">
         <label class="text" for="female">Female</label>
       </div>
     </div>
@@ -59,13 +59,13 @@
     <div class="row-content">
       <label class="label text" for="department">Department</label>
       <div *ngFor = "let department of departments" fxLayout="row" fxLayoutAlign="space-between" style="width: 140px;padding-top: 2%;" fxFlex='98'>
-        <mat-checkbox class="deptCheckbox" formControlname="department" [value]= "department" color="primary" (change)="addDept(department)">{{department}}</mat-checkbox>
+        <mat-checkbox class="deptCheckbox" [value]= "department" color="primary" (change)="addDept(department)">{{department}}</mat-checkbox>
       </div>
     </div>
 
     <div class="row-content">
       <label class="label text" for="salary">Choose your salary </label>
-      <input class="input" [(ngModel)]='salary' type="range" formControlName="salary" min="200000" max="500000" step="1000" value="400000">
+      <input class="input" [(ngModel)]="this.salary" type="range" formControlName="salary" min="200000" max="500000" step="1000" value="{{this.salary}}">
       <output class="salary-output text" for="salary">{{salary}}</output>
     </div>
 
@@ -73,8 +73,8 @@
       <label class="label text" for="startDate">Start Date </label>
       <div id="date">
 
-        <select formControlName="day">
-          <option value="1" selected>1</option>-
+        <select [(ngModel)]="this.day" formControlName="day">
+          <option value="1">1</option>-
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
@@ -106,8 +106,8 @@
           <option value="30">30</option>
           <option value="31">31</option>
         </select>
-        <select formControlName="month">
-          <option value="01" selected>January</option>
+        <select [(ngModel)]="this.month" formControlName="month">
+          <option value="01">January</option>
           <option value="02">Febuary</option>
           <option value="03">March</option>
           <option value="04">April</option>
@@ -120,11 +120,11 @@
           <option value="11">November</option>
           <option value="12">December</option>
         </select>
-        <select formControlName="year">
+        <select [(ngModel)]="this.year" formControlName="year">
           <option value="2021">2021</option>
           <option value="2020">2020</option>
           <option valne="2019">2019</option>
-          <option value="2018" selected>2018</option>
+          <option value="2018">2018</option>
           <option value="2017">2017</option>
           <option value="2016">2016</option>
         </select>
@@ -135,7 +135,7 @@
       <label class="label text" for ="Notes" >Notes</label>
       <mat-form-field class="example-full-width">
         <mat-label>Leave a comment</mat-label>
-        <textarea formControlName="notes" class="input" matInput placeholder="Here Are My Notes"></textarea>
+        <textarea [(ngModel)]="this.notes" formControlName="notes" class="input" matInput placeholder="Here Are My Notes"></textarea>
       </mat-form-field>
     </div>
 
@@ -145,4 +145,5 @@
       </div>
     </div>
   </form>
+</div>
 </div>

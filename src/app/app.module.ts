@@ -12,21 +12,22 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { HttpClientModule, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { HttpClientModule } from '@angular/common/http';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { UpdateComponent } from './components/update/update.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddEmployeeComponent,
     ServicesComponent,
-    HomeComponent
+    HomeComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    HttpHeaders,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
@@ -35,7 +36,8 @@ import { Observable } from 'rxjs';
     FormsModule,
     ReactiveFormsModule,
     MatDatepickerModule,
-    Observable
+    MatCheckboxModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

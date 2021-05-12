@@ -1,7 +1,7 @@
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { EmployeeService } from './../../services/EmployeeService/employee.service';
-import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-employee',
@@ -9,20 +9,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-employee.component.scss']
 })
 export class AddEmployeeComponent implements OnInit {
-  salary = '40000';
+
+  departments: string[] = ['HR', 'Sales', 'Finance', 'Engineer', 'Others'];
+  checked: string[] = [];
+  salary = '400000';
   form: FormGroup;
   submitted = false;
-  constructor(private formBuilder: FormBuilder, private empService: EmployeeService) { }
+  constructor(private formBuilder: FormBuilder, private empService: EmployeeService, private router: Router) { }
 
   ngOnInit(){
     this.form = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
-      profile: [],
+      profileImage: [],
       gender: ['', Validators.required],
-      department: ['', Validators.required],
+      department: this.checked,
       salary: ['', Validators.required],
-      // date:[new Date(), Validators.required],
-      // StartDate: [new Date(), Validators.required],
       day: ['', Validators.required],
       month: ['', Validators.required],
       year: ['', Validators.required],
@@ -30,11 +31,29 @@ export class AddEmployeeComponent implements OnInit {
     });
   }
 
+  addDept(department){
+    this.checked.push(department);
+  }
 
   onSubmit(){
     if (this.form.valid){
+      const requestObj = {
+        department: this.checked,
+        gender: this.form.value.gender,
+        name: this.form.value.name,
+        notes: this.form.value.notes,
+        profileImage: this.form.value.profileImage,
+        salary: this.form.value.salary,
+        start: this.form.value.year + '-' + this.form.value.month + '-' + this.form.value.day
+      };
       console.log(this.form.value);
-      this.empService.addEmployee(this.form.value);
+      this.empService.addEmployee(requestObj).subscribe((response) => {
+        console.log(response);
+        this.router.navigateByUrl('/home');
+      }, (err) => {
+        console.log(err);
+      });
+
     }else{
       return;
     }
