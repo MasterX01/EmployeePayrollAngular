@@ -49,7 +49,7 @@ export class AddEmployeeComponent implements OnInit {
       console.log(this.form.value);
       this.empService.addEmployee(requestObj).subscribe((response) => {
         console.log(response);
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('home');
       }, (err) => {
         console.log(err);
       });
@@ -58,5 +58,9 @@ export class AddEmployeeComponent implements OnInit {
       return;
     }
 
+  }
+
+  goToHome(){
+    this.router.navigateByUrl('home')
   }
 }

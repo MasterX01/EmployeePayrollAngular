@@ -36,7 +36,8 @@ export class HomeComponent implements OnInit {
   }
 
   addNewEmployee(){
-    this.router.navigateByUrl('add');
+    console.log('redirecting now')
+    this.router.navigateByUrl('/add');
   }
 
   update(employee){
@@ -45,7 +46,7 @@ export class HomeComponent implements OnInit {
       height: '100%',
       data: {employee}
     });
-    this.getEmployeePayrollData();
-    // location.reload();
+    // this.getEmployeePayrollData();
   }
+
 }

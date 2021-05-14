@@ -58,9 +58,23 @@
 
     <div class="row-content">
       <label class="label text" for="department">Department</label>
-      <div *ngFor = "let department of departments" fxLayout="row" fxLayoutAlign="space-between" style="width: 140px;padding-top: 2%;" fxFlex='98'>
-        <mat-checkbox class="deptCheckbox" [value]= "department" color="primary" (change)="addDept(department)">{{department}}</mat-checkbox>
+
+      <div *ngFor="let control of departmentArray.controls; let i = index">
+        <input
+          type="checkbox"
+          class="checkbox"
+          [formControl]="control"
+          id="departmentCheckbox{{ i }}"
+          (change)="getSelectedDepartmentValues()"
+        />
+        <label for="departmentCheckbox{{ i }}" class="text">{{
+          departmentList[i]
+        }}</label>
       </div>
+
+      <!-- <div *ngFor = "let department of departments" fxLayout="row" fxLayoutAlign="space-between" style="width: 140px;padding-top: 2%;" fxFlex='98'>
+        <mat-checkbox class="deptCheckbox" [(ngModel)]="department.checked" [value]= "department" color="primary" (change)="addDept(department.dept)">{{department.dept}}</mat-checkbox>
+      </div> -->
     </div>
 
     <div class="row-content">

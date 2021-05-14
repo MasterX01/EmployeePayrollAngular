@@ -9,7 +9,7 @@
 </header>
 
 <div class="form-content">
-  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()" onreset="resetForm()">
+  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()" >
 
     <div class="form-head">Employee Payroll form</div>
 
@@ -143,6 +143,7 @@
       <div class="submit-reset">
         <button type="submit" mat-raised-button color="primary">Submit</button>
       </div>
+      <button (click)="goToHome()" mat-raised-button color="primary">Cancel</button>
     </div>
   </form>
 </div>
