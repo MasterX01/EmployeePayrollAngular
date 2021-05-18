@@ -10,40 +10,40 @@
 </header>
 <div class="main-content">
   <div class="header-content">
-      <div class="emp-detail-text">
-          Employee Details
-      </div>
-      <a class="add-button" routerLinkActive="active">
-        <img src="../../../assets/assets/icons/add-24px.svg" (click)="addNewEmployee()" alt="">Add User
-      </a>
+    <div class="emp-detail-text">
+        Employee Details
     </div>
-    <div class="table-main">
-        <table id="table-display" class="table">
-          <thead>
-            <tr>
-                <th>Profile Picture</th>
-                <th>Name</th>
-                <th>Salary</th>
-                <th>Gender</th>
-                <th>Start Date</th>
-                <th>Note</th>
-                <th>Departments</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tr *ngFor="let employee of employeePayrollList">
-          <td><img src="{{employee.profileImage}}" alt="" ></td>
-          <td>{{employee.name}}</td>
-          <td>{{employee.salary}}</td>
-          <td>{{employee.gender}}</td>
-          <td>{{employee.start}}</td>
-          <td>{{employee.notes}}</td>
-          <td>{{employee.department}}</td>
-          <td>
-            <img id="{{employee.employeeId}}" (click)="delete(employee.id)"  alt="delete " src="../../../assets/assets/icons/delete-black-18dp.svg ">
-            <img id="{{employee.employeeId}}" (click)="update(employee)"  alt="edit" src="../../../assets/assets/icons/create-black-18dp.svg ">
-        </td>
+    <a class="add-button" routerLinkActive="active">
+      <img src="../../../assets/assets/icons/add-24px.svg" (click)="addNewEmployee()" alt="">Add User
+    </a>
+  </div>
+  <div class="table-main">
+    <table id="table-display" class="table">
+      <thead>
+        <tr>
+          <th>Profile Picture</th>
+          <th>Name</th>
+          <th>Salary</th>
+          <th>Gender</th>
+          <th>Start Date</th>
+          <th>Note</th>
+          <th>Departments</th>
+          <th>Action</th>
         </tr>
-        </table>
-    </div>
+      </thead>
+      <tr *ngFor="let employee of employeePayrollList">
+        <td>{{employee.profileImage}}</td>
+        <td>{{employee.name}}</td>
+        <td>{{employee.salary}}</td>
+        <td>{{employee.gender}}</td>
+        <td>{{employee.start}}</td>
+        <td>{{employee.notes}}</td>
+        <td>{{employee.department}}</td>
+        <td>
+          <img id="{{employee.employeeId}}" (click)="delete(employee.id)"  alt="delete " src="../../../assets/assets/icons/delete-black-18dp.svg ">
+          <img id="{{employee.employeeId}}" (click)="update(employee)"  alt="edit" src="../../../assets/assets/icons/create-black-18dp.svg ">
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>
